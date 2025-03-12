@@ -1,0 +1,16 @@
+[tool.poetry]
+name = "barsapi"
+version = "1.2"
+description = "Library to get data from Bars School Diary"
+authors = ["askiphy <durovam06@gmail.com>"]
+license = "All Rights Reserved"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+requests = "^2.31.0"
+fake-useragent = "^1.2.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
