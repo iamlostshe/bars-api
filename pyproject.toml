@@ -1,19 +1,40 @@
-[tool.poetry]
-name = "barsapi"
-version = "1.2"
-description = "Library to get data from Bars School Diary"
-authors = ["askiphy <durovam06@gmail.com>"]
-license = "All Rights Reserved"
-readme = "README.md"
-
-[tool.poetry.dependencies]
-python = "^3.11"
-requests = "^2.31.0"
-fake-useragent = "^1.2.1"
-
 [build-system]
 requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "barsapi"
+version = "2.0"
+dependencies = [
+  "aiohttp==3.11.13",
+  "fake-useragent==2.1.0",
+  "typing_extensions==4.12.2",
+]
+requires-python = ">=3.11"
+authors = [
+  {name="askiphy", email="durovam06@gmail.com"},
+  {name="iamlostshe", email="vanamelcikov7275@gmail.com"}
+]
+maintainers = [
+  {name="askiphy", email="durovam06@gmail.com"},
+]
+description = "Library to get data from Bars School Diary"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+
+[project.urls]
+Homepage = "https://github.com/iamlostshe/bars-api"
+# Documentation = "https://readthedocs.org"
+Repository = "https://github.com/iamlostshe/bars-api.git"
+"Bug Tracker" = "https://github.com/iamlostshe/bars-api/issues"
+Changelog = "https://github.com/iamlostshe/bars-api/CHANGELOG.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+aiohttp = "3.11.13"
+fake-useragent = "2.1.0"
+typing_extensions = "4.12.2"
 
 [tool.ruff]
 select = ["ALL"]

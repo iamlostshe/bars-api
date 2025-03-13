@@ -10,7 +10,9 @@
 
 - [x] Добавить новых методов (отсюда: https://github.com/iamlostshe/pars-diary/blob/main/utils/pars.py).
 
-- [ ] Доделать `pyproject.toml`.
+- [x] Доделать `pyproject.toml`.
+
+- [ ] Создать CHANGELOG.md
 
 - [ ] Изменить структуру для `pypi`.
 
