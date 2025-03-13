@@ -22,6 +22,22 @@ description = "Library to get data from Bars School Diary"
 readme = "README.md"
 license = "MIT"
 license-files = ["LICENSE"]
+keywords = [
+  "school", "школа",
+  "diary", "дневник",
+  "pars", "parser", "парсер",
+  "parsing", "парсинг",
+  "api", "апи"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Framework :: aiohttp",
+  "Framework :: AsyncIO",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: News/Diary",
+  "Topic :: Text Processing :: Markup :: Markdown",
+  "Typing :: Typed"
+]
 
 [project.urls]
 Homepage = "https://github.com/iamlostshe/bars-api"
@@ -29,12 +45,6 @@ Homepage = "https://github.com/iamlostshe/bars-api"
 Repository = "https://github.com/iamlostshe/bars-api.git"
 "Bug Tracker" = "https://github.com/iamlostshe/bars-api/issues"
 Changelog = "https://github.com/iamlostshe/bars-api/CHANGELOG.md"
-
-[tool.poetry.dependencies]
-python = "^3.11"
-aiohttp = "3.11.13"
-fake-useragent = "2.1.0"
-typing_extensions = "4.12.2"
 
 [tool.ruff]
 select = ["ALL"]

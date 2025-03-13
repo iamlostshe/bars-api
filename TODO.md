@@ -12,7 +12,7 @@
 
 - [x] Доделать `pyproject.toml`.
 
-- [ ] Создать CHANGELOG.md
+- [x] Создать CHANGELOG.md
 
 - [ ] Изменить структуру для `pypi`.
 
