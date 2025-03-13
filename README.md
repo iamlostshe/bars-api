@@ -34,7 +34,7 @@ api = BarsAPI(HOST, COOKIE)
 print(api.get_class_year_info())
 print(api.get_person_data())
 print(api.get_school_info())
-print(api.get_summary_marks_url())
+print(api.get_summary_marks())
 ```
 
 > [!WARNING]
@@ -139,7 +139,7 @@ print(api.get_summary_marks_url())
 }
 ```
 
-### get_summary_marks_url
+### get_summary_marks
 
 Сводка по оценкам:
 
