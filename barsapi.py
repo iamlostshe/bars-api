@@ -3,9 +3,14 @@
 from __future__ import annotations
 
 import datetime as dt
+from typing import TYPE_CHECKING
 
-import requests
+from aiohttp import ClientSession, ClientTimeout
 from fake_useragent import UserAgent
+from typing_extensions import Self
+
+if TYPE_CHECKING:
+    from types import TracebackType
 
 
 class BarsAPI:
@@ -16,7 +21,7 @@ class BarsAPI:
         user_agent: str | None = None,
         timeout: int | None = None,
     ) -> None:
-        """Инициализация класса взаимодействия с API барса."""  # noqa: RUF002
+        """Асинхронная инициализация класса взаимодействия с API барса."""  # noqa: RUF002
         # Очищаем host, если необходимо
         host = host.replace("https://", "").replace("http://", "")
         if host[-1] == "/":
@@ -34,68 +39,70 @@ class BarsAPI:
             "cookie": cookie,
         }
 
-        # Работа с timeout  # noqa: RUF003
-        self.timeout = timeout or 20
-
         # Формируем обект сессии
-        self.session = requests.Session()
+        self.session = ClientSession(
+            headers=headers,
+            timeout=ClientTimeout(total=timeout or 20),
+        )
 
-        # Устанавливаем headers для сессии
-        self.session.headers.update(headers)
-
-    def get_class_year_info(self) -> dict:
-        """Данные о классе ученика.
+    async def __aenter__(self) -> Self:
+        """Нужен чтобы работать с with ...
 
         Returns:
-            Данные о классе ученика.
+            Self
 
         """  # noqa: RUF002
-        r = self.session.post(
-            self.get_class_year_info_url,
-            timeout=self.timeout,
-        )
-        return r.json()
+        return self
 
-    def get_person_data(self) -> dict:
-        """Данные об ученике.
+    async def __aexit__(
+        self,
+        exc_type: type[BaseException] | None,
+        exc_value: BaseException | None,
+        traceback: TracebackType | None,
+    ) -> bool | None:
+        """Закрытие сессии при работе через with."""
+        await self.session.close()
+
+    async def get_class_year_info(self) -> dict:
+        """Данные о классе ученика/пользователя.
 
         Returns:
-            Данные об ученике.
+            Данные о классе ученика/пользователя.
 
         """  # noqa: RUF002
-        r = self.session.post(
-            self.get_person_data_url,
-            timeout=self.timeout,
-        )
-        return r.json()
+        async with self.session.post(self.get_class_year_info_url) as r:
+            return await r.json()
 
-    def get_school_info(self) -> dict:
-        """Данные о школе пользователя.
+    async def get_person_data(self) -> dict:
+        """Данные об ученике/пользователе.
 
         Returns:
-            Данные о школе пользователя.
+            Данные об ученике/пользователе.
 
         """  # noqa: RUF002
-        r = self.session.post(
-            self.get_school_info_url,
-            timeout=self.timeout,
-        )
-        return r.json()
+        async with self.session.post(self.get_person_data_url) as r:
+            return await r.json()
 
-    def get_summary_marks(self) -> dict:
-        """Данные об оценках пользователя.
+    async def get_school_info(self) -> dict:
+        """Данные о школе ученика/пользователя.
 
         Returns:
-            Данные об оценках пользователя.
+            Данные о школе ученика/пользователя.
+
+        """  # noqa: RUF002
+        async with self.session.post(self.get_school_info_url) as r:
+            return await r.json()
+
+    async def get_summary_marks(self) -> dict:
+        """Данные об оценках ученика/пользователя.
+
+        Returns:
+            Данные об оценках ученика/пользователя.
 
         """  # noqa: RUF002
         params = {
             "date": dt.datetime.now().strftime("%Y-%m-%d"),  # noqa: DTZ005
         }
 
-        r = self.session.get(
-            self.get_summary_marks_url,
-            params=params,
-            timeout=self.timeout,
-        )
-        return r.json()
+        async with self.session.get(self.get_summary_marks_url, params=params) as r:
+            return await r.json()

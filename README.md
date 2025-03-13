@@ -18,23 +18,66 @@ Python библиотека для получения информации из 
 1. Установите [библиотеку](https://pypi.org/project/barsapi):
 
 ```bash
-pip install bars-api
+pip install bars-api python-dotenv
 ```
 
-2. Скопируйте и запустите этот код:
+2. Создайте такую структуру:
+
+```bash
+your_project
+├── .env
+└── main.py
+```
+
+3. Скопируйте и запустите этот код:
+
+- `.env`
+
+```
+HOST="YOUR_HOST_HERE"
+COOKIE="YOUR_COOKIE_HERE"
+```
+
+- `main.py`
 
 ```python
+import asyncio
+from os import getenv
+
 from barsapi import BarsAPI
+from dotenv import load_dotenv
 
-HOST = "YOUR_HOST_HERE"
-COOKIE = "YOUR_COOKIE_HERE"
+# Загружаем данные из .env
+load_dotenv()
 
-api = BarsAPI(HOST, COOKIE)
+# Host может быть получен здесь http://aggregator-obr.bars-open.ru/my_diary
+HOST = getenv("HOST")
+COOKIE = getenv("COOKIE")
 
-print(api.get_class_year_info())
-print(api.get_person_data())
-print(api.get_school_info())
-print(api.get_summary_marks())
+
+async def main() -> None:
+    # Инициализируем объект API для взаимодействия
+    async with BarsAPI(HOST, COOKIE) as api:
+
+        # Данные о классе пользователя  # noqa: RUF003
+        c = await api.get_class_year_info()
+        print(c)
+
+        # Данные о пользователе
+        p = await api.get_person_data()
+        print(p)
+
+        # Данные о школе пользователя
+        s = await api.get_school_info()
+        print(s)
+
+        # Данные о оценках пользователя
+        m = await api.get_summary_marks()
+        print(m)
+
+
+if __name__ == "__main__":
+    asyncio.run(main())
 ```
 
 > [!WARNING]
