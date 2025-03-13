@@ -1,4 +1,13 @@
-# bars-api
+<h1 align="center">bars-api</h1>
+
+<p align="center">
+    <a href="https://opensource.org/licenses/MIT">
+        <img alt="License: MIT" src="https://img.shields.io/badge/License-MIT-yellow.svg">
+    </a>
+    <a href="https://wakatime.com/badge/user/018cdef0-b6a0-4cba-ba74-ae713fa3eefc/project/a0a801d2-8329-48fe-a9e7-c8237a09d67a">
+        <img src="https://wakatime.com/badge/user/018cdef0-b6a0-4cba-ba74-ae713fa3eefc/project/a0a801d2-8329-48fe-a9e7-c8237a09d67a.svg" alt="wakatime">
+    </a>
+</p>
 
 Python библиотека для получения информации из школьного дневника bars.
 
@@ -59,21 +68,14 @@ async def main() -> None:
     # Инициализируем объект API для взаимодействия
     async with BarsAPI(HOST, COOKIE) as api:
 
-        # Данные о классе пользователя  # noqa: RUF003
-        c = await api.get_class_year_info()
-        print(c)
-
-        # Данные о пользователе
-        p = await api.get_person_data()
-        print(p)
-
-        # Данные о школе пользователя
-        s = await api.get_school_info()
-        print(s)
-
-        # Данные о оценках пользователя
-        m = await api.get_summary_marks()
-        print(m)
+        print(await api.get_birthdays())
+        print(await api.get_class_hours())
+        print(await api.get_class_year_info())
+        print(await api.get_events())
+        print(await api.get_person_data())
+        print(await api.get_school_info())
+        print(await api.get_summary_marks())
+        print(await api.get_total_marks())
 
 
 if __name__ == "__main__":
@@ -91,6 +93,19 @@ if __name__ == "__main__":
 > [этим гайдом](https://telegra.ph/Instrukciya-po-registracii-v-bote-04-25).
 
 ## Подробно
+
+Доступные функции:
+
+```py
+api.get_birthdays()
+api.get_class_hours()
+api.get_class_year_info()
+api.get_events()
+api.get_person_data()
+api.get_school_info()
+api.get_summary_marks()
+api.get_total_marks()
+```
 
 ### get_class_year_info
 

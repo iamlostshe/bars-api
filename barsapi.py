@@ -28,10 +28,14 @@ class BarsAPI:
             host = host[:-1]
 
         # Генерируем ссылки
+        self.get_birthdays_url = f"https://{host}/api/WidgetService/getBirthdays"
+        self.get_class_hours_url = f"https://{host}/api/WidgetService/getClassHours"
         self.get_class_year_info_url = f"https://{host}/api/SchoolService/getClassYearInfo"
+        self.get_events_url = f"https://{host}/api/WidgetService/getEvents"
         self.get_person_data_url = f"https://{host}/api/ProfileService/GetPersonData"
         self.get_school_info_url = f"https://{host}/api/SchoolService/getSchoolInfo"
         self.get_summary_marks_url = f"https://{host}/api/MarkService/GetSummaryMarks"
+        self.get_total_marks_url = f"https://{host}/api/MarkService/GetTotalMarks"
 
         # Формируем headers
         headers = {
@@ -63,6 +67,26 @@ class BarsAPI:
         """Закрытие сессии при работе через with."""
         await self.session.close()
 
+    async def get_birthdays(self) -> dict:
+        """Данные о днёх рождения одноклассников.
+
+        Returns:
+            Данные о днёх рождения одноклассников.
+
+        """  # noqa: RUF002
+        async with self.session.post(self.get_birthdays_url) as r:
+            return await r.json()
+
+    async def get_class_hours(self) -> dict:
+        """Данные о классных часах ученика/пользователя.
+
+        Returns:
+            Данные о классных часах ученика/пользователя.
+
+        """  # noqa: RUF002
+        async with self.session.post(self.get_class_hours_url) as r:
+            return await r.json()
+
     async def get_class_year_info(self) -> dict:
         """Данные о классе ученика/пользователя.
 
@@ -71,6 +95,16 @@ class BarsAPI:
 
         """  # noqa: RUF002
         async with self.session.post(self.get_class_year_info_url) as r:
+            return await r.json()
+
+    async def get_events(self) -> dict:
+        """Данные ивентах (предположительно о родительских собраниях или мероприятиях).
+
+        Returns:
+            Данные ивентах.
+
+        """  # noqa: RUF002
+        async with self.session.post(self.get_events_url) as r:
             return await r.json()
 
     async def get_person_data(self) -> dict:
@@ -105,4 +139,14 @@ class BarsAPI:
         }
 
         async with self.session.get(self.get_summary_marks_url, params=params) as r:
+            return await r.json()
+
+    async def get_total_marks(self) -> dict:
+        """Данные о итоговых оценках.
+
+        Returns:
+            Данные о итоговых оценках.
+
+        """  # noqa: RUF002
+        async with self.session.post(self.get_total_marks_url) as r:
             return await r.json()
