@@ -120,3 +120,21 @@ Changelog = "https://github.com/iamlostshe/bars-api/CHANGELOG.md"
 
 - Создан CHANGELOG.md.
 - В нём указана все изменения в проекте за всё время.
+
+## 14. project | fix structure | Исправлена структура
+
+- Проект приведён к стандартной структуре PyPI репозитрия:
+
+```bash
+.
+├── CHANGELOG.md
+├── LICENSE
+├── pyproject.toml
+├── README.md
+├── src
+│   └── bars_api
+│       ├── barsapi.py
+│       └── __init__.py
+├── tests
+└── TODO.md
+```

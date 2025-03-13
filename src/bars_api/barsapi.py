@@ -3,11 +3,10 @@
 from __future__ import annotations
 
 import datetime as dt
-from typing import TYPE_CHECKING
+from typing import TYPE_CHECKING, Self
 
 from aiohttp import ClientSession, ClientTimeout
 from fake_useragent import UserAgent
-from typing_extensions import Self
 
 if TYPE_CHECKING:
     from types import TracebackType
