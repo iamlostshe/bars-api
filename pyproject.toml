@@ -1,0 +1,50 @@
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[project]
+name = "barsapi"
+version = "2.0"
+dependencies = [
+  "aiohttp==3.11.13",
+  "fake-useragent==2.1.0",
+]
+requires-python = ">=3.11"
+authors = [
+  {name="askiphy", email="durovam06@gmail.com"},
+  {name="iamlostshe", email="vanamelcikov7275@gmail.com"}
+]
+maintainers = [
+  {name="askiphy", email="durovam06@gmail.com"},
+]
+description = "Library to get data from Bars School Diary"
+readme = "README.md"
+license = "MIT"
+license-files = ["LICENSE"]
+keywords = [
+  "school", "школа",
+  "diary", "дневник",
+  "pars", "parser", "парсер",
+  "parsing", "парсинг",
+  "api", "апи"
+]
+classifiers = [
+  "Development Status :: 5 - Production/Stable",
+  "Framework :: aiohttp",
+  "Framework :: AsyncIO",
+  "License :: OSI Approved :: MIT License",
+  "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: News/Diary",
+  "Topic :: Text Processing :: Markup :: Markdown",
+  "Typing :: Typed"
+]
+
+[project.urls]
+Homepage = "https://github.com/iamlostshe/bars-api"
+# Documentation = "https://readthedocs.org"
+Repository = "https://github.com/iamlostshe/bars-api.git"
+"Bug Tracker" = "https://github.com/iamlostshe/bars-api/issues"
+Changelog = "https://github.com/iamlostshe/bars-api/CHANGELOG.md"
+
+[tool.ruff]
+select = ["ALL"]
+preview = true
