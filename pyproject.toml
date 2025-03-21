@@ -39,11 +39,11 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/iamlostshe/bars-api"
+Homepage = "https://github.com/askiphy/BarsAPI"
 # Documentation = "https://readthedocs.org"
-Repository = "https://github.com/iamlostshe/bars-api.git"
-"Bug Tracker" = "https://github.com/iamlostshe/bars-api/issues"
-Changelog = "https://github.com/iamlostshe/bars-api/CHANGELOG.md"
+Repository = "https://github.com/askiphy/BarsAPI.git"
+"Bug Tracker" = "https://github.com/askiphy/BarsAPI/issues"
+Changelog = "https://github.com/askiphy/BarsAPI/CHANGELOG.md"
 
 [tool.ruff]
 select = ["ALL"]
