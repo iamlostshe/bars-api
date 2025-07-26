@@ -1,0 +1,7 @@
+{
+   "name": "bars-api",
+   "stack": ["aiohttp", "fake-useragent"],
+   "sites": ["school-cont.edu.bars.group", "школа.образование33.рф", "school.vip.edu35.ru", "school.07.edu.o7.com", "openschool.49gov.ru", "s51.edu.o7.com", "edu.adm-nao.ru", "school.karelia.ru", "school.r-19.ru", "sh-open.ris61edu.ru", "e-school.ryazangov.ru", "es.ciur.ru"],
+   "status": true,
+   "last_check": 1753539300,
+}
