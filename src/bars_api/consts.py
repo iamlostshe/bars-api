@@ -1,0 +1,10 @@
+"""Некоторые постоянные значения."""
+
+BIRTHDAYS_URL = "WidgetService/getBirthdays"
+CLASS_HOURS_URL = "WidgetService/getClassHours"
+CLASS_YEAR_INFO_URL = "SchoolService/getClassYearInfo"
+EVENTS_URL = "WidgetService/getEvents"
+PERSON_DATA_URL = "ProfileService/GetPersonData"
+SCHOOL_INFO_URL = "SchoolService/getSchoolInfo"
+SUMMARY_MARKS_URL = "MarkService/GetSummaryMarks"
+TOTAL_MARKS_URL = "MarkService/GetTotalMarks"

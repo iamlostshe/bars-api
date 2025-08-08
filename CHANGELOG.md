@@ -138,3 +138,9 @@ Changelog = "https://github.com/iamlostshe/bars-api/CHANGELOG.md"
 ├── tests
 └── TODO.md
 ```
+
+## 15. Проект оптимизирован
+
+- Обновлён конфиг ruff-а.
+- Обновлён .gitignore.
+- Оптимизирован парсер.

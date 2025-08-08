@@ -1,3 +1,5 @@
-"""Инициализация BarsAPI."""  # noqa: CPY001
+"""Инициализация BarsAPI."""
 
-from barsapi import BarsAPI  # noqa: F401
+from barsapi import BarsAPI
+
+__all__ = ("BarsAPI",)
