@@ -16,6 +16,7 @@ authors = [
 ]
 maintainers = [
   {name="askiphy", email="durovam06@gmail.com"},
+  {name="iamlostshe", email="vanamelcikov7275@gmail.com"}
 ]
 description = "Library to get data from Bars School Diary"
 readme = "README.md"
@@ -45,6 +46,18 @@ Repository = "https://github.com/askiphy/BarsAPI.git"
 "Bug Tracker" = "https://github.com/askiphy/BarsAPI/issues"
 Changelog = "https://github.com/askiphy/BarsAPI/CHANGELOG.md"
 
-[tool.ruff]
+[tool.ruff.lint]
 select = ["ALL"]
-preview = true
+ignore = [
+    # Ошибки связанные с кирилицей
+    "RUF001", "RUF002", "RUF003",
+
+    # TODO
+    "TD003", "FIX002",
+
+    # Cравнение магических значений
+    "PLR2004",
+
+    # Работа с датой
+    "DTZ005",
+]
