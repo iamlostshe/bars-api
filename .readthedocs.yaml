@@ -1,0 +1,15 @@
+version: 2
+
+build:
+    os: ubuntu-lts-latest
+    tools:
+        nodejs: "latest"
+    jobs:
+        install:
+            - curl -fsSL https://bun.com/install | bash
+            - cd docs && ~/.bun/bin/bun i
+        build:
+            html:
+                - cd docs && ~/.bun/bin/bun run vitepress build docs
+                - mkdir -p $READTHEDOCS_OUTPUT/
+                - mv docs/docs/.vitepress/dist $READTHEDOCS_OUTPUT/
