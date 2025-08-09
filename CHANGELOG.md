@@ -143,4 +143,6 @@ Changelog = "https://github.com/iamlostshe/bars-api/CHANGELOG.md"
 
 - Обновлён конфиг ruff-а.
 - Обновлён .gitignore.
+- Добавлены настройки vs code.
+
 - Оптимизирован парсер.
