@@ -6,7 +6,7 @@ build-backend = "poetry.core.masonry.api"
 name = "barsapi"
 version = "2.2.0"
 dependencies = [
-  "aiohttp==3.12.14",
+  "aiohttp==3.12.15",
   "fake-useragent==2.2.0",
 ]
 requires-python = ">=3.11"
