@@ -5,6 +5,7 @@ export default {
   sitemap: {
     hostname: 'https://bars-api.readthedocs.io'
   },
+  base: "/ru/latest/",
   themeConfig: {
     sidebar: [
       {

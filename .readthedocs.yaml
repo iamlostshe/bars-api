@@ -12,4 +12,4 @@ build:
             html:
                 - cd docs && ~/.bun/bin/bun run vitepress build docs
                 - mkdir -p $READTHEDOCS_OUTPUT/
-                - mv docs/docs/.vitepress/dist $READTHEDOCS_OUTPUT/
+                - mv docs/docs/.vitepress/dist $READTHEDOCS_OUTPUT/html
