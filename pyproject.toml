@@ -3,7 +3,7 @@ requires = ["poetry-core"]
 build-backend = "poetry.core.masonry.api"
 
 [project]
-name = "barsapi"
+name = "bars-api"
 version = "2.2.0"
 dependencies = [
   "aiohttp==3.12.15",
@@ -41,7 +41,7 @@ classifiers = [
 
 [project.urls]
 Homepage = "https://github.com/askiphy/BarsAPI"
-# Documentation = "https://readthedocs.org"
+Documentation = "https://bars-api.readthedocs.io"
 Repository = "https://github.com/askiphy/BarsAPI.git"
 "Bug Tracker" = "https://github.com/askiphy/BarsAPI/issues"
 Changelog = "https://github.com/askiphy/BarsAPI/CHANGELOG.md"
@@ -49,15 +49,15 @@ Changelog = "https://github.com/askiphy/BarsAPI/CHANGELOG.md"
 [tool.ruff.lint]
 select = ["ALL"]
 ignore = [
-    # Ошибки связанные с кирилицей
-    "RUF001", "RUF002", "RUF003",
+  # Ошибки связанные с кирилицей
+  "RUF001", "RUF002", "RUF003",
 
-    # TODO
-    "TD003", "FIX002",
+  # TODO
+  "TD003", "FIX002",
 
-    # Cравнение магических значений
-    "PLR2004",
+  # Cравнение магических значений
+  "PLR2004",
 
-    # Работа с датой
-    "DTZ005",
+  # Работа с датой
+  "DTZ005",
 ]

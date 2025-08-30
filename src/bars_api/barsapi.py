@@ -5,7 +5,7 @@ from __future__ import annotations
 import datetime as dt
 from typing import TYPE_CHECKING, Self
 
-from aiohttp import ClientSession, ClientTimeout
+from aiohttp import ClientSession
 from fake_useragent import UserAgent
 
 from .consts import (
@@ -18,10 +18,17 @@ from .consts import (
     SUMMARY_MARKS_URL,
     TOTAL_MARKS_URL,
 )
+from .types import (
+    Birthday,
+    ClassYearInfo,
+    PersonData,
+    SchoolInfo,
+    SummaryMarks,
+    TotalMarks,
+)
 
 if TYPE_CHECKING:
     from types import TracebackType
-
 
 class BarsAPI:
     """Класс для взаимодействия с API барса."""
@@ -31,28 +38,20 @@ class BarsAPI:
         host: str,
         cookie: str,
         user_agent: str | None = None,
-        timeout: int | None = None,
     ) -> None:
         """Асинхронная инициализация класса взаимодействия с API барса."""
-        # Формируем headers
-        headers = {
-            "user-Agent": user_agent or UserAgent().random,
-            "cookie": cookie,
-        }
-
         # Очищаем host, если необходимо
-        host = host.replace("https://", "").replace("http://", "")
+        host = host.replace("https://", "")
         if host[-1] == "/":
             host = host[:-1]
 
-        # Получаем base_url
-        base_url = "https://{host}/api/"
-
         # Формируем обект сессии
         self.session = ClientSession(
-            base_url=base_url,
-            headers=headers,
-            timeout=ClientTimeout(total=timeout or 20),
+            base_url=f"https://{host}/api/",
+            headers={
+                "user-Agent": user_agent or UserAgent().random,
+                "cookie": cookie,
+            },
         )
 
     async def __aenter__(self) -> Self:
@@ -69,41 +68,46 @@ class BarsAPI:
         exc_type: type[BaseException] | None,
         exc_value: BaseException | None,
         traceback: TracebackType | None,
-    ) -> bool | None:
+    ) -> None:
         """Закрытие сессии при работе через with."""
         await self.session.close()
 
-    async def get_birthdays(self) -> dict:
+    async def get_birthdays(self) -> list[Birthday]:
         """Данные о днёх рождения одноклассников."""
         async with self.session.post(BIRTHDAYS_URL) as r:
-            return await r.json()
+            return [
+                Birthday(
+                    i["date"],
+                    i["short_name"],
+                ) for i in await r.json()
+            ]
 
     async def get_class_hours(self) -> dict:
         """Данные о классных часах ученика/пользователя."""
         async with self.session.post(CLASS_HOURS_URL) as r:
             return await r.json()
 
-    async def get_class_year_info(self) -> dict:
+    async def get_class_year_info(self) -> ClassYearInfo:
         """Данные о классе ученика/пользователя."""
         async with self.session.post(CLASS_YEAR_INFO_URL) as r:
-            return await r.json()
+            return ClassYearInfo(await r.json())
 
-    async def get_events(self) -> dict:
+    async def get_events(self) -> list:
         """Данные ивентах (родительских собраниях или мероприятиях)."""
         async with self.session.post(EVENTS_URL) as r:
             return await r.json()
 
-    async def get_person_data(self) -> dict:
+    async def get_person_data(self) -> PersonData:
         """Данные об ученике/пользователе."""
         async with self.session.post(PERSON_DATA_URL) as r:
-            return await r.json()
+            return PersonData(await r.json())
 
-    async def get_school_info(self) -> dict:
+    async def get_school_info(self) -> SchoolInfo:
         """Данные о школе ученика/пользователя."""
         async with self.session.post(SCHOOL_INFO_URL) as r:
-            return await r.json()
+            return SchoolInfo(await r.json())
 
-    async def get_summary_marks(self) -> dict:
+    async def get_summary_marks(self) -> SummaryMarks:
         """Данные об оценках ученика/пользователя."""
         async with self.session.get(
             SUMMARY_MARKS_URL,
@@ -111,9 +115,9 @@ class BarsAPI:
                 "date": dt.datetime.now().strftime("%Y-%m-%d"),
             },
         ) as r:
-            return await r.json()
+            return SummaryMarks(await r.json())
 
-    async def get_total_marks(self) -> dict:
+    async def get_total_marks(self) -> TotalMarks:
         """Данные о итоговых оценках."""
         async with self.session.post(TOTAL_MARKS_URL) as r:
-            return await r.json()
+            return TotalMarks(await r.json())
