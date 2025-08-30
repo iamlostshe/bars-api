@@ -19,11 +19,11 @@ https://bars-api.readthedocs.io/
 
 ``` bash
 # Используя pip
-pip install git+https://github.com/imalostshe/bars-api
+pip install git+https://github.com/iamlostshe/bars-api
 
 # Используя uv
-uv pip install git+https://github.com/imalostshe/bars-api
+uv add git+https://github.com/iamlostshe/bars-api
 
 # Используя poetry
-poetry add git+https://github.com/imalostshe/bars-api
+poetry add git+https://github.com/iamlostshe/bars-api
 ```
