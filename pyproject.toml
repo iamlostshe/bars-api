@@ -1,7 +1,3 @@
-[build-system]
-requires = ["poetry-core"]
-build-backend = "poetry.core.masonry.api"
-
 [project]
 name = "bars-api"
 version = "2.2.0"
@@ -33,18 +29,17 @@ classifiers = [
   "Development Status :: 5 - Production/Stable",
   "Framework :: aiohttp",
   "Framework :: AsyncIO",
-  "License :: OSI Approved :: MIT License",
   "Topic :: Internet :: WWW/HTTP :: Dynamic Content :: News/Diary",
   "Topic :: Text Processing :: Markup :: Markdown",
   "Typing :: Typed"
 ]
 
 [project.urls]
-Homepage = "https://github.com/askiphy/BarsAPI"
+Homepage = "https://github.com/askiphy/bars_api"
 Documentation = "https://bars-api.readthedocs.io"
-Repository = "https://github.com/askiphy/BarsAPI.git"
-"Bug Tracker" = "https://github.com/askiphy/BarsAPI/issues"
-Changelog = "https://github.com/askiphy/BarsAPI/CHANGELOG.md"
+Repository = "https://github.com/askiphy/bars_api.git"
+"Bug Tracker" = "https://github.com/askiphy/bars_api/issues"
+Changelog = "https://github.com/askiphy/bars_api/CHANGELOG.md"
 
 [tool.ruff.lint]
 select = ["ALL"]

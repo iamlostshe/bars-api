@@ -1,5 +1,5 @@
-"""Инициализация BarsAPI."""
+"""Инициализация bars_api."""
 
-from barsapi import BarsAPI
+from .parser import BarsAPI
 
 __all__ = ("BarsAPI",)

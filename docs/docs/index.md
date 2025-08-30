@@ -54,7 +54,7 @@ COOKIE="YOUR_COOKIE_HERE"
 import asyncio
 from os import getenv
 
-from barsapi import BarsAPI
+from bars_api import bars_api
 from dotenv import load_dotenv
 
 # Загружаем данные из .env
@@ -67,7 +67,7 @@ COOKIE = getenv("COOKIE")
 
 async def main() -> None:
     # Инициализируем объект API для взаимодействия
-    async with BarsAPI(HOST, COOKIE) as api:
+    async with bars_api(HOST, COOKIE) as api:
 
         print(await api.get_birthdays())
         print(await api.get_class_hours())

@@ -7,7 +7,7 @@
 - В `README.md` обавлен пример использования:
 
 ```py
-import barsapi
+import bars_api
 
 getMarks(cookie)
 getData(cookie)
@@ -42,12 +42,12 @@ getClass(cookie)
 - Пакет теперь может так:
 
 ```py
-from barsapi import BarsAPI
+from bars_api import bars_api
 
 HOST = "YOUR_HOST_HERE"
 COOKIE = "YOUR_COOKIE_HERE"
 
-api = BarsAPI(HOST, COOKIE)
+api = bars_api(HOST, COOKIE)
 
 print(api.get_class_year_info())
 print(api.get_person_data())
@@ -65,7 +65,7 @@ print(api.get_summary_marks())
 import asyncio
 from os import getenv
 
-from barsapi import BarsAPI
+from bars_api import bars_api
 from dotenv import load_dotenv
 
 # Загружаем данные из .env
@@ -78,7 +78,7 @@ COOKIE = getenv("COOKIE")
 
 async def main() -> None:
     # Инициализируем объект API для взаимодействия
-    async with BarsAPI(HOST, COOKIE) as api:
+    async with bars_api(HOST, COOKIE) as api:
         print(await api.get_total_marks())
 
 
@@ -133,7 +133,7 @@ Changelog = "https://github.com/iamlostshe/bars-api/CHANGELOG.md"
 ├── README.md
 ├── src
 │   └── bars_api
-│       ├── barsapi.py
+│       ├── bars_api.py
 │       └── __init__.py
 ├── tests
 └── TODO.md
