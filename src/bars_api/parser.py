@@ -141,13 +141,18 @@ class BarsAPI:
         """Данные о школе ученика/пользователя."""
         return SchoolInfo(await self._request(SCHOOL_INFO_URL))
 
-    async def get_summary_marks(self) -> SummaryMarks:
+    async def get_summary_marks(
+        self, date: dt.datetime | None = None,
+    ) -> SummaryMarks:
         """Данные об оценках ученика/пользователя."""
+        if not date:
+            date = dt.datetime.now()
+
         return SummaryMarks(
             await self._request(
                 SUMMARY_MARKS_URL,
                 params={
-                    "date": dt.datetime.now().strftime("%Y-%m-%d"),
+                    "date": date.strftime("%Y-%m-%d"),
                 },
             ),
         )
