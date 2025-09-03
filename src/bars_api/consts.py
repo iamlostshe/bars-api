@@ -13,3 +13,6 @@ TOTAL_MARKS_URL = "MarkService/GetTotalMarks"
 # Ссылка на страницу со ссылками на все сервера дневников в разных регионах
 # old_url: http://aggregator-obr.bars-open.ru/my_diary
 AGGREGATOR_URL = "https://aggregator.edu.bars.group/my_diary"
+
+# Регулярное выражение для удаления (экранирования) тегов <span>
+SPAN_CLEANER = r"<span[^>]*>(.*?)</span>"
