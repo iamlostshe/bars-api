@@ -109,7 +109,7 @@ class PersonData:
 
     def __init__(self, json_data: dict[str, str | int | bool]) -> None:
         """Инициализация сведений о пользователе."""
-        self.children_persons: list = json_data["json_data"]
+        self.children_persons: list = json_data["children_persons"]
 
         self.selected_pupil = self.SelectedPupil(
             id=json_data["selected_pupil_id"],

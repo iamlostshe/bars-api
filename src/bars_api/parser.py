@@ -44,23 +44,25 @@ class BarsAPI:
 
     def __init__(
         self,
-        host: str,
-        cookie: str,
+        host: str | None = None,
+        cookie: str | None = None,
         user_agent: str | None = None,
     ) -> None:
         """Асинхронная инициализация класса взаимодействия с API барса."""
         # Очищаем host, если необходимо
-        host = host.replace("https://", "")
-        if host[-1] == "/":
-            host = host[:-1]
+        if isinstance(host, str):
+            host = host.replace("https://", "").rstrip("/")
+
+        headers = {
+            "user-agent": user_agent or UserAgent().random,
+        }
+        if cookie:
+            headers["cookie"] = cookie
 
         # Формируем объект сессии
         self.session = ClientSession(
             base_url=f"https://{host}/api/",
-            headers={
-                "user-Agent": user_agent or UserAgent().random,
-                "cookie": cookie,
-            },
+            headers=headers,
         )
 
     async def __aenter__(self) -> Self:
@@ -87,7 +89,7 @@ class BarsAPI:
             text = await r.text()
 
             # Проверяем ответ сервера на наличае ошибок в ответе
-            if "Server.UserNotAuthenticatedError" in text or r.status_code == 403:
+            if "Server.UserNotAuthenticatedError" in text or r.status == 403:
                 raise UserNotAuthenticatedError
 
             if "Client.ValidationError" in text:
