@@ -9,6 +9,7 @@ from aiohttp import ClientSession
 from fake_useragent import UserAgent
 
 from .consts import (
+    AGGREGATOR_URL,
     BIRTHDAYS_URL,
     CLASS_HOURS_URL,
     CLASS_YEAR_INFO_URL,
@@ -45,7 +46,7 @@ class BarsAPI:
         if host[-1] == "/":
             host = host[:-1]
 
-        # Формируем обект сессии
+        # Формируем объект сессии
         self.session = ClientSession(
             base_url=f"https://{host}/api/",
             headers={
@@ -71,6 +72,15 @@ class BarsAPI:
     ) -> None:
         """Закрытие сессии при работе через with."""
         await self.session.close()
+
+    async def get_regions(self) -> dict[str, str]:
+        """Получаем все доступные регионы."""
+        async with self.session.get(AGGREGATOR_URL) as r:
+            data = await r.json()
+
+        if data.get("success") and data.get("data"):
+            return {r["name"]: r["url"].rstrip("/") for r in data["data"]}
+        return None
 
     async def get_birthdays(self) -> list[Birthday]:
         """Данные о днёх рождения одноклассников."""
