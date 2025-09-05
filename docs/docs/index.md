@@ -44,7 +44,7 @@ COOKIE="YOUR_COOKIE_HERE"
 > на ваши данные.
 >
 > `YOUR_HOST_HERE` можно получить
-> [тут](http://aggregator-obr.bars-open.ru/my_diary),
+> [тут](https://aggregator.edu.bars.group/my_diary),
 > а для получения `YOUR_COOKIE_HERE` воспользуйтесь
 > [этим гайдом](https://telegra.ph/Instrukciya-po-registracii-v-bote-04-25).
 
@@ -60,7 +60,7 @@ from dotenv import load_dotenv
 # Загружаем данные из .env
 load_dotenv()
 
-# Host может быть получен здесь http://aggregator-obr.bars-open.ru/my_diary
+# Host может быть получен здесь https://aggregator.edu.bars.group/my_diary
 HOST = getenv("HOST")
 COOKIE = getenv("COOKIE")
 
