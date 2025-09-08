@@ -16,6 +16,7 @@ from .consts import (
     CLASS_HOURS_URL,
     CLASS_YEAR_INFO_URL,
     EVENTS_URL,
+    HOMEWORK_URL,
     PERSON_DATA_URL,
     SCHOOL_INFO_URL,
     SPAN_CLEANER,
@@ -29,6 +30,7 @@ from .exceptions import (
 from .types import (
     Birthday,
     ClassYearInfo,
+    HomeWork,
     PersonData,
     SchoolInfo,
     SummaryMarks,
@@ -160,3 +162,9 @@ class BarsAPI:
     async def get_total_marks(self) -> TotalMarks:
         """Данные о итоговых оценках."""
         return TotalMarks(await self._request(TOTAL_MARKS_URL))
+
+    async def get_homework(self) -> HomeWork:
+        """Данные о домашнем задании."""
+        text = await self._request(HOMEWORK_URL)
+        print(text)
+        return HomeWork(text)

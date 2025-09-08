@@ -9,6 +9,7 @@ PERSON_DATA_URL = "ProfileService/GetPersonData"
 SCHOOL_INFO_URL = "SchoolService/getSchoolInfo"
 SUMMARY_MARKS_URL = "MarkService/GetSummaryMarks"
 TOTAL_MARKS_URL = "MarkService/GetTotalMarks"
+HOMEWORK_URL = "HomeworkService/GetHomeworkFromRange"
 
 # Ссылка на страницу со ссылками на все сервера дневников в разных регионах
 # old_url: http://aggregator-obr.bars-open.ru/my_diary

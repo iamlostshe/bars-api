@@ -77,6 +77,7 @@ async def main() -> None:
         print(await api.get_school_info())
         print(await api.get_summary_marks())
         print(await api.get_total_marks())
+        print(await api.get_homework())
 
 
 if __name__ == "__main__":

@@ -195,7 +195,10 @@ class SummaryMarks:
 
     def __init__(self, json_data: dict[str, str | int | bool]) -> None:
         """Инициализация."""
-        data = json_data["summary_marks_data"][0]
+        try:
+            data = json_data["summary_marks_data"][0]
+        except KeyError:
+            return
         subperiod = data["subperiod"]
 
         self.subperiod: Subperiod = Subperiod(
