@@ -1,5 +1,6 @@
 """Исключения."""
 
+
 class UserNotAuthenticatedError(Exception):
     """Пользователь не найден."""
 

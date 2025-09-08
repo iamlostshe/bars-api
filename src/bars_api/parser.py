@@ -144,8 +144,9 @@ class BarsAPI:
         return SchoolInfo(await self._request(SCHOOL_INFO_URL))
 
     async def get_summary_marks(
-        self, date: dt.datetime | None = None,
-    ) -> SummaryMarks:
+        self,
+        date: dt.datetime | None = None,
+    ) -> SummaryMarks | None:
         """Данные об оценках ученика/пользователя."""
         if not date:
             date = dt.datetime.now()
