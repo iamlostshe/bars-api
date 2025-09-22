@@ -30,11 +30,11 @@ from .exceptions import (
 from .types import (
     Birthday,
     ClassYearInfo,
-    HomeWork,
     PersonData,
     SchoolInfo,
     SummaryMarks,
     TotalMarks,
+    Homework,
 )
 
 if TYPE_CHECKING:
@@ -164,8 +164,6 @@ class BarsAPI:
         """Данные о итоговых оценках."""
         return TotalMarks(await self._request(TOTAL_MARKS_URL))
 
-    async def get_homework(self) -> HomeWork:
+    async def get_homework(self) -> None:
         """Данные о домашнем задании."""
-        text = await self._request(HOMEWORK_URL)
-        print(text)
-        return HomeWork(text)
+        return await self._request(HOMEWORK_URL)
