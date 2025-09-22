@@ -197,32 +197,35 @@ class SummaryMarks:
         """Инициализация."""
         try:
             data = json_data["summary_marks_data"][0]
-        except KeyError:
-            return
-        subperiod = data["subperiod"]
 
-        self.subperiod: Subperiod = Subperiod(
-            code=subperiod["code"],
-            name=subperiod["name"],
-        )
+            discipline_marks = [
+                self.DisciplineMarks(
+                    discipline=m["discipline"],
+                    average_mark=float(m["average_mark"]),
+                    marks=[
+                        SummaryMark(
+                            date=i["date"],
+                            mark=i["mark"],
+                            description=i["description"],
+                        )
+                        for i in m["marks"]
+                    ],
+                )
+                for m in data["discipline_marks"]
+            ]
+            subperiod = data["subperiod"]
 
-        self.discipline_marks = [
-            self.DisciplineMarks(
-                discipline=m["discipline"],
-                average_mark=float(m["average_mark"]),
-                marks=[
-                    SummaryMark(
-                        date=i["date"],
-                        mark=i["mark"],
-                        description=i["description"],
-                    )
-                    for i in m["marks"]
-                ],
+            self.subperiod: Subperiod = Subperiod(
+                code=subperiod["code"],
+                name=subperiod["name"],
             )
-            for m in data["discipline_marks"]
-        ]
+            self.discipline_marks = discipline_marks
+            self.dates: list[str] = data["dates"]
 
-        self.dates: list[str] = data["dates"]
+        except (IndexError, KeyError):
+            self.subperiod = None
+            self.discipline_marks = []
+            self.dates: list[str] = []
 
 
 class TotalMarks:
