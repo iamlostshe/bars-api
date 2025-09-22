@@ -187,11 +187,9 @@ class SummaryMarks:
     class DisciplineMarks:
         """Оценки по предмету."""
 
-        def __init__(self) -> None:
-            """Инициализация."""
-            self.discipline: str
-            self.average_mark: float
-            self.marks: list[SummaryMark]
+        discipline: str
+        average_mark: float
+        marks: list[SummaryMark]
 
     def __init__(self, json_data: dict[str, str | int | bool]) -> None:
         """Инициализация."""
@@ -222,7 +220,7 @@ class SummaryMarks:
             self.discipline_marks = discipline_marks
             self.dates: list[str] = data["dates"]
 
-        except (IndexError, KeyError):
+        except IndexError or KeyError:
             self.subperiod = None
             self.discipline_marks = []
             self.dates: list[str] = []
@@ -263,3 +261,11 @@ class TotalMarks:
             )
             for i in data["discipline_marks"]
         ]
+
+
+class Homework:
+    """Домашнее задание."""
+
+    def __init__(self) -> None:
+        """Инициализация."""
+        
